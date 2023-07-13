@@ -20,19 +20,19 @@ export default function MovieDetailPage({ data, contentId }) {
   );
 }
 
-export async function getStaticPaths() {
-  const contentIdList = await getAllContentIds("movie");
-  const paths = contentIdList.map((id) => ({
-    params: { movieId: id },
-  }));
+// export async function getStaticPaths() {
+//   const contentIdList = await getAllContentIds("movie");
+//   const paths = contentIdList.map((id) => ({
+//     params: { movieId: id },
+//   }));
 
-  return {
-    paths: paths,
-    fallback: false,
-  };
-}
+//   return {
+//     paths: paths,
+//     fallback: false,
+//   };
+// }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const contentId = context.params.movieId;
   const data = await getDataWithId("movie", contentId);
   const contentVideo = await getVideoWithId("movie", contentId);

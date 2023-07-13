@@ -19,19 +19,19 @@ export default function TvShowDetailPage({ data, contentId }) {
   );
 }
 
-export async function getStaticPaths() {
-  const contentIdList = await getAllContentIds("tv");
-  const paths = contentIdList.map((id) => ({
-    params: { tvShowId: id },
-  }));
+// export async function getStaticPaths() {
+//   const contentIdList = await getAllContentIds("tv");
+//   const paths = contentIdList.map((id) => ({
+//     params: { tvShowId: id },
+//   }));
 
-  return {
-    paths: paths,
-    fallback: false,
-  };
-}
+//   return {
+//     paths: paths,
+//     fallback: false,
+//   };
+// }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const contentId = context.params.tvShowId;
   const data = await getDataWithId("tv", contentId);
   const contentVideo = await getVideoWithId("tv", contentId);
